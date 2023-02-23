@@ -1,0 +1,30 @@
+.edit-form__submit-btn_action_save {
+  max-width: 358px;
+  height: 50px;
+  margin: 48px 36px 37px;
+  padding: 0;
+  background: #000000;
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
+  border: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .edit-form__submit-btn_action_save {
+    margin: 45px 22px 25px;
+    min-width: 238px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+.edit-form__submit-btn_action_save:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s linear;
+}

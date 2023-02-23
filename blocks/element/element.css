@@ -1,0 +1,14 @@
+.element {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .element {
+    margin: 0 auto;
+    max-width: 282px;
+    column-gap: 0;
+  }
+}

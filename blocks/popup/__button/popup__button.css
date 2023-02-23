@@ -1,0 +1,13 @@
+.popup__button {
+  position: absolute;
+  z-index: 2;
+  top: -32px;
+  right: -32px;
+}
+
+@media screen and (max-width: 515px) {
+  .popup__button {
+    top: -35px;
+    right: 0;
+  }
+}

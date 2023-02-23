@@ -1,0 +1,17 @@
+.popup__button_action_close {
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  background: url("../../../../images/close-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .popup__button_action_close {
+    width: 20px;
+    height: 20px;
+  }
+}
