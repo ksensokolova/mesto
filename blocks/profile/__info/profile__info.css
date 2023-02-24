@@ -5,14 +5,14 @@
   grid-template-columns: 1fr minmax(min-content, max-content);
   grid-template-rows: minmax(min-content, max-content) 1fr;
   column-gap: 18px;
-  row-gap: 16px;
+  row-gap: 12px;
 }
 
 @media screen and (max-width: 900px) {
   .profile__info {
     grid-row: 2;
     column-gap: 10px;
-    margin: 0 auto 36px;
+    margin: 0 auto 30px;
     align-self: center;
     row-gap: 14px;
   }

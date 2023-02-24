@@ -1,9 +1,10 @@
 .profile__occupation {
   margin: 0;
   padding: 0;
+  max-width: 336px;
   grid-row: 2/2;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 15px;
   font-weight: 400;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -18,3 +19,11 @@
     margin: 0 auto;
   }
 }
+
+@media screen and (max-width: 345px) {
+  .profile__occupation {
+    max-width: 282px;
+    margin: 0 0 0 45px;
+  }
+}
+

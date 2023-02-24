@@ -2,7 +2,7 @@
   width: 150px;
   height: 50px;
   background-color: #000000;
-  background-image: url("../../../../images/add-button.png");
+  background-image: url("../../../../images/add-button-big.svg");
   background-size: contain;
   background-repeat: no-repeat;
   border: 0;
@@ -12,7 +12,7 @@
   .profile__button_action_add {
     width: 282px;
     height: 50px;
-    background-image: url("../../../../images/Add\ Button.png");
+    background-image: url("../../../../images/add-button-mob.svg");
     grid-row: 3;
     margin: 0 auto;
 

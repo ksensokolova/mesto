@@ -3,10 +3,16 @@
   height: 32px;
   margin: 0;
   padding: 0;
-  background: url("../../../../images/close-icon.png");
+  background: url("../../../../images/close-icon.svg");
   background-size: contain;
   background-repeat: no-repeat;
   border: 0;
+}
+
+.popup__button_action_close:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s linear;
 }
 
 @media screen and (max-width: 320px) {
