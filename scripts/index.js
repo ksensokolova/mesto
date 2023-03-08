@@ -14,7 +14,7 @@ const togglePopup = function (popup) {
 };
 
 //editPopup
-const editPopup = document.querySelector('.popup__edit-form');
+const editPopup = document.querySelector('.popup_type_edit-form');
 const buttonEditClose = editPopup.querySelector('.popup__button_action_close');
 
 //edit-form внутри попапа
@@ -45,7 +45,7 @@ function handleFormSubmit(evt) {
 }
 
 //imagePopup
-const imagePopup = document.querySelector('.popup__image-form');
+const imagePopup = document.querySelector('.popup_type_image-form');
 const buttonImageClose = imagePopup.querySelector(
   '.popup__button_action_close'
 );
@@ -98,7 +98,7 @@ const initialCards = [
 //динамическое создание карточки из шаблона
 const createCard = (card) => {
   const NewCard = document
-    .querySelector('.card__template')
+    .querySelector('.elements__template')
     .content.cloneNode(true);
   const cardHeading = NewCard.querySelector('.element__heading');
   const cardImage = NewCard.querySelector('.element__image');
@@ -144,7 +144,7 @@ function deleteCardButton(evt) {
 }
 
 //emptyPopup
-const emptyPopup = document.querySelector('.popup__empty-form');
+const emptyPopup = document.querySelector('.popup_type_empty-form');
 const buttonEmptyClose = emptyPopup.querySelector(
   '.popup__button_action_close'
 );
