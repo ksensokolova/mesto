@@ -15,7 +15,7 @@ const togglePopup = function (popup) {
 
 //editPopup
 const editPopup = document.querySelector('.popup_type_edit-form');
-let buttonEditClose = editPopup.querySelector('.popup__button_action_close');
+const buttonEditClose = editPopup.querySelector('.popup__button_action_close');
 
 //edit-form внутри попапа
 const formEdit = editPopup.querySelector('.popup-form');
