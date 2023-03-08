@@ -16,7 +16,3 @@
   opacity: 0.5;
   transition: opacity 0.2s linear;
 }
-
-.element__like:active {
-  background: #000000;
-}

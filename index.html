@@ -15,7 +15,8 @@
         <img
           class="profile__avatar"
           src="./images/Avatar.png"
-          alt="Аватарка исследователя океана Жак-Ив Кусто.">
+          alt="Аватарка исследователя океана Жак-Ив Кусто."
+        >
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__occupation">Исследователь океана</p>
@@ -24,70 +25,23 @@
 
         <button
           class="profile__button profile__button_action_add"
-          type="button">
-        </button>
+          type="button"
+        ></button>
       </section>
       <section class="elements">
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/karachaevsk.png"
-            alt="Вид на Карачаевск.">
-          <div class="element__group">
-            <h2 class="element__heading">Карачаевск</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/elbrus.png"
-            alt="Вид на Эльбрус закате вдалеке.">
-          <div class="element__group">
-            <h2 class="element__heading">Гора Эльбрус</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/dombay.png"
-            alt="Вид на Домбай.">
-          <div class="element__group">
-            <h2 class="element__heading">Домбай</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/elbrus.png"
-            alt="Вид на Эльбрус закате вдалеке.">
-          <div class="element__group">
-            <h2 class="element__heading">Гора Эльбрус</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/dombay.png"
-            alt="Вид на Домбай.">
-          <div class="element__group">
-            <h2 class="element__heading">Домбай</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/karachaevsk.png"
-            alt="Вид на Карачаевск.">
-          <div class="element__group">
-            <h2 class="element__heading">Карачаево-Черкесская Республика</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </article>
+        <template class="card__template">
+          <article class="element">
+            <button
+              class="element__button element__button_action_delete"
+              type="button"
+            ></button>
+            <img class="element__image">
+            <div class="element__group">
+              <h2 class="element__heading"></h2>
+              <button class="element__like" type="button"></button>
+            </div>
+          </article>
+        </template>
       </section>
     </main>
 
@@ -95,31 +49,79 @@
       <p class="footer__copyright">© 2023. Kseniia Sokolova</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup__edit-form">
       <div class="popup__container">
         <button
           class="popup__button popup__button_action_close"
-          type="button">
-        </button>
+          type="button"
+        ></button>
         <h2 class="popup__heading">Редактировать профиль</h2>
 
-        <form class="edit-form" name="edit-form" method="post" action="#">
+        <form class="popup-form" name="edit-form" method="post" action="#">
           <input
             name="inputName"
             type="text"
             placeholder="Имя"
-            class="edit-form__text edit-form__text_type_name">
+            class="popup-form__text popup-form__text_type_name"
+          >
           <input
             name="inputOccupation"
             type="text"
             placeholder="О себе"
-            class="edit-form__text edit-form__text_type_occupation">
+            class="popup-form__text popup-form__text_type_additional"
+          >
           <button
-            class="edit-form__submit-btn edit-form__submit-btn_action_save"
-            type="submit">
+            class="popup-form__submit-btn popup-form__submit-btn_action_save"
+            type="submit"
+          >
             Сохранить
           </button>
         </form>
+      </div>
+    </div>
+
+    <div class="popup popup__empty-form">
+      <div class="popup__container">
+        <button
+          class="popup__button popup__button_action_close"
+          type="button"
+        ></button>
+        <h2 class="popup__heading">Новое место</h2>
+        <form
+          class="popup-form"
+          name="empty-form"
+          method="post"
+          action="#"
+        >
+          <input
+            name="inputPlace"
+            type="text"
+            placeholder="Название"
+            class="popup-form__text popup-form__text_type_name"
+          >
+          <input
+            name="inputLink"
+            type="text"
+            placeholder="Ссылка на картинку"
+            class="popup-form__text popup-form__text_type_additional"
+          >
+          <button
+            class="popup-form__submit-btn popup-form__submit-btn_action_save"
+            type="submit"
+          >
+            Создать
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup__image-form">
+      <div class="popup__card">
+        <button
+          class="popup__button popup__button_action_close"
+          type="button"
+        ></button>
+        <img class="popup__image" src="#" alt="">
+        <p class="popup__title"></p>
       </div>
     </div>
     <script src="./scripts/index.js"></script>

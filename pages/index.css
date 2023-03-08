@@ -19,24 +19,36 @@
 @import url(../blocks/elements/elements.css);
 
 @import url(../blocks/element/element.css);
+@import url(../blocks/element/__button/element__button.css);
+@import url(../blocks/element/__button/_action/element__button_action_delete.css);
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__group/element__group.css);
 @import url(../blocks/element/__heading/element__heading.css);
 @import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__like/_active/element__like_active.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+
+@import url(../blocks/popup/__edit-form/popup__edit-form.css);
+@import url(../blocks/popup/__empty-form/popup__empty-form.css);
+
+@import url(../blocks/popup/__image-form/popup__image-form.css);
+@import url(../blocks/popup/__card/popup__card.css);
+@import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/__title/popup__title.css);
+
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__heading/popup__heading.css);
 @import url(../blocks/popup/__button/popup__button.css);
 @import url(../blocks/popup/__button/_action/popup__button_action_close.css);
 
-@import url(../blocks/edit-form/edit-form.css);
-@import url(../blocks/edit-form/__text/edit-form__text.css);
-@import url(../blocks/edit-form/__text/_type/edit-form__text_type_name.css);
-@import url(../blocks/edit-form/__text/_type/edit-form__text_type_occupation.css);
-@import url(../blocks/edit-form/__submit-btn/edit-form__submit-btn_action_save.css);
-
+@import url(../blocks/popup-form/popup-form.css);
+@import url(../blocks/popup-form/__text/popup-form__text.css);
+@import url(../blocks/popup-form/__text/_type/popup-form__text_type_name.css);
+@import url(../blocks/popup-form/__text/_type/popup-form__text_type_additional.css);
+@import url(../blocks/popup-form/__submit-btn/popup-form__submit-btn.css);
+@import url(../blocks/popup-form/__submit-btn/_action/popup-form__submit-btn_action_save.css);
