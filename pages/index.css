@@ -34,7 +34,7 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 
 @import url(../blocks/popup/_type/popup_type_edit-form.css);
-@import url(../blocks/popup/_type/popup_type_empty-form.css);
+@import url(../blocks/popup/_type/popup_type_add-form.css);
 @import url(../blocks/popup/_type/popup_type_image-form.css);
 
 @import url(../blocks/popup/__card/popup__card.css);

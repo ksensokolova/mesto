@@ -8,7 +8,13 @@
   row-gap: 20px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 950px) {
+  .elements {
+    max-width: 860px;
+  }
+}
+
+@media screen and (max-width: 625px) {
   .elements {
     max-width: 282px;
   }

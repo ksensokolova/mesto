@@ -1,16 +1,16 @@
 .element {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+  max-width: 282px;
   background: #ffffff;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 920px) {
   .element {
     margin: 0 auto;
-    max-width: 282px;
     column-gap: 0;
   }
 }
