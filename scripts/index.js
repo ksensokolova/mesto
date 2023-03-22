@@ -9,6 +9,8 @@ const cardsContainer = document.querySelector('.elements');
 
 //popup
 const popup = document.querySelector('.popup');
+//массив из попов
+const overlayList = Array.from(document.querySelectorAll('.popup'));
 const popupContainer = document.querySelector('.popup__container');
 
 //popupEditProfile
@@ -45,10 +47,32 @@ const linkInput = formAddCard.querySelector(
   '.popup-form__text_type_additional'
 );
 
-//функция навешивания/снятия класса с попапом
-const togglePopup = function (popup) {
-  popup.classList.toggle('popup_opened');
-};
+//функция открытия - навешивание класса с попапом
+const openPopup = function (popup) {
+  popup.classList.add('popup_opened');
+  //добавляем обработчик с колбэком, проверяющим нажатие на Esc при наличии класса открытия попапа
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+  });
+}
+
+//функция закрытия - снятия класса с попапом
+const closePopup = function (popup) {
+  popup.classList.remove('popup_opened');
+  //удаляем обработчик, передаваяя в параметрах открытый попап
+  document.removeEventListener('keydown', popup);
+}
+
+//функция закрытия попапа по оверлею
+  overlayList.forEach((popup) => {
+    popup.addEventListener('click', function (evt) {
+      if (evt.target === popup) {
+        closePopup(popup);
+      }
+    });
+  });
 
 //отправка данных из полей формы редактирования в profile
 function submitEditProfileForm(evt) {
@@ -56,8 +80,8 @@ function submitEditProfileForm(evt) {
   //запись данных из полей формы редактирования в profile
   profileName.textContent = nameInput.value;
   profileOccupation.textContent = jobInput.value;
-  togglePopup(popupEditProfile);
-}
+  closePopup(popupEditProfile);
+};
 
 //отрисовка карточек
 const createCard = (card) => {
@@ -71,8 +95,8 @@ const createCard = (card) => {
   cardImage.setAttribute('src', card.link);
   cardImage.setAttribute('alt', card.alt);
   //выбор картинки для попапа image
-  const openImage = templateNewCard.querySelector('.element__image');
-  openImage.addEventListener('click', function () {
+  const imageCard = templateNewCard.querySelector('.element__image');
+  imageCard.addEventListener('click', function () {
     toggleBigImage(cardHeading, cardImage);
   });
   //выбор кнопки для удаления карточки выбор элемента и обработчик по клику
@@ -113,7 +137,7 @@ function submitAddCardForm(evt) {
   };
   // Создаем карточку на основе данных
   renderCard(card, cardsContainer);
-  togglePopup(popupAddCard);
+  closePopup(popupAddCard);
   formAddCard.reset();
 }
 
@@ -126,7 +150,7 @@ function deleteCardButton(evt) {
 
 //открытие попапа редактирования
 profileEditButton.addEventListener('click', function () {
-  togglePopup(popupEditProfile);
+  openPopup(popupEditProfile);
   //запись данных из profile в поля формы редактирования
   nameInput.value = profileName.textContent;
   jobInput.value = profileOccupation.textContent;
@@ -134,22 +158,22 @@ profileEditButton.addEventListener('click', function () {
 
 //закрытие попапа редактирования
 buttonEditClose.addEventListener('click', function () {
-  togglePopup(popupEditProfile);
+  closePopup(popupEditProfile);
 });
 
 //открытие попапа добавления
 profileAddButton.addEventListener('click', function () {
-  togglePopup(popupAddCard);
+  openPopup(popupAddCard);
 });
 
 //закрытие попапа добавления
 buttonAddClose.addEventListener('click', function () {
-  togglePopup(popupAddCard);
+  closePopup(popupAddCard);
 });
 
 //открытие попапа Image
 const toggleBigImage = function (cardHeading, cardImage) {
-  togglePopup(popupBigImage);
+  openPopup(popupBigImage);
   bigImageCard.src = cardImage.src;
   bigImageCard.alt = cardImage.alt;
   titleImageCard.textContent = cardHeading.textContent;
@@ -157,7 +181,7 @@ const toggleBigImage = function (cardHeading, cardImage) {
 
 //закрытие попапа Image
 buttonImageClose.addEventListener('click', function () {
-  togglePopup(popupBigImage);
+  closePopup(popupBigImage);
 });
 
 //обработчик клика по кнопке Создать

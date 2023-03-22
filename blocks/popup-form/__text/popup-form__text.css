@@ -1,6 +1,6 @@
 .popup-form__text {
   max-width: 358px;
-  margin: 0 36px 30px;
+  margin: 44px 36px 30px;
   padding: 0;
   padding-bottom: 11px;
   border: 0;
@@ -13,6 +13,7 @@
 
 .popup-form__text:last-of-type {
   margin-bottom: 0;
+  margin-top: 0;
 }
 
 @media screen and (max-width: 320px) {

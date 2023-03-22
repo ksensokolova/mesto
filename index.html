@@ -57,23 +57,39 @@
         ></button>
         <h2 class="popup__heading">Редактировать профиль</h2>
 
-        <form class="popup-form" name="edit-form" method="post" action="#">
+        <form
+          class="popup-form"
+          name="edit-form"
+          method="post"
+          action="#"
+          novalidate
+        >
           <input
             name="inputName"
             type="text"
             placeholder="Имя"
             class="popup-form__text popup-form__text_type_name"
+            id="name-input"
             autocomplete="off"
+            minlength="2"
+            maxlength="40"
+            required
           >
+          <span class="popup-form__input-error name-input-error"></span>
           <input
             name="inputOccupation"
             type="text"
             placeholder="О себе"
             class="popup-form__text popup-form__text_type_additional"
+            id="occupation-input"
             autocomplete="off"
+            minlength="2"
+            maxlength="200"
+            required
           >
+          <span class="popup-form__input-error occupation-input-error"></span>
           <button
-            class="popup-form__submit-btn popup-form__submit-btn_action_save"
+            class="popup-form__submit-btn popup-form__submit-btn_type_enabled"
             type="submit"
           >
             Сохранить
@@ -95,23 +111,32 @@
           id="add-form"
           method="post"
           action="#"
+          novalidate
         >
           <input
             name="inputPlace"
             type="text"
             placeholder="Название"
             class="popup-form__text popup-form__text_type_name"
+            id="place-input"
             autocomplete="off"
+            required
+            minlength="2"
+            maxlength="30"
           >
+          <span class="popup-form__input-error place-input-error"></span>
           <input
             name="inputLink"
-            type="text"
+            type="url"
             placeholder="Ссылка на картинку"
             class="popup-form__text popup-form__text_type_additional"
+            id="link-input"
             autocomplete="off"
+            required
           >
+          <span class="popup-form__input-error link-input-error"></span>
           <button
-            class="popup-form__submit-btn popup-form__submit-btn_action_save"
+            class="popup-form__submit-btn popup-form__submit-btn_type_enabled"
             type="submit"
           >
             Создать
@@ -131,5 +156,6 @@
     </div>
     <script src="./scripts/constants.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
