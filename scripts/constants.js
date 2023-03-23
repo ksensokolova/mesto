@@ -31,3 +31,12 @@ const initialCards = [
     alt: 'Вид на на Байкал.',
   },
 ];
+
+const config = {
+  formSelector: '.popup-form',
+  inputSelector: '.popup-form__text',
+  submitButtonSelector: '.popup-form__submit-btn',
+  errorClass: 'popup-form__text_type_error',
+  errorEnabledClass: 'popup-form__input-error_active',
+  buttonDisabledClass: 'popup-form__submit-btn_type_disabled',
+};

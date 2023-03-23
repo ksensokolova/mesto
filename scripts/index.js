@@ -7,11 +7,8 @@ const profileAddButton = document.querySelector('.profile__button_action_add');
 //контейнер, где будут создаваться карточки
 const cardsContainer = document.querySelector('.elements');
 
-//popup
-const popup = document.querySelector('.popup');
-//массив из попов
+//массив из попапов
 const overlayList = Array.from(document.querySelectorAll('.popup'));
-const popupContainer = document.querySelector('.popup__container');
 
 //popupEditProfile
 const popupEditProfile = document.querySelector('.popup_type_edit-form');
@@ -42,37 +39,44 @@ const buttonAddClose = popupAddCard.querySelector(
 
 //formAddCard внутри попапа
 const formAddCard = popupAddCard.querySelector('.popup-form');
+//Находим кнопку сабмита
+const submitButtonAddForm = formAddCard.querySelector(
+  '.popup-form__submit-btn'
+);
 const placeInput = formAddCard.querySelector('.popup-form__text_type_name');
 const linkInput = formAddCard.querySelector(
   '.popup-form__text_type_additional'
 );
 
+//закрытие попапа с помощью Esc
+const closePopupByEsc = (evt) => {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+};
+
 //функция открытия - навешивание класса с попапом
 const openPopup = function (popup) {
   popup.classList.add('popup_opened');
-  //добавляем обработчик с колбэком, проверяющим нажатие на Esc при наличии класса открытия попапа
-  document.addEventListener('keydown', function (evt) {
-    if (evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
-      closePopup(popup);
-    }
-  });
-}
+  //добавляем обработчик с функцией закрытия по нажатию на Esc и наличием класса открытия попапа
+  document.addEventListener('keydown', closePopupByEsc);
+};
 
 //функция закрытия - снятия класса с попапом
 const closePopup = function (popup) {
   popup.classList.remove('popup_opened');
-  //удаляем обработчик, передаваяя в параметрах открытый попап
-  document.removeEventListener('keydown', popup);
-}
+  //удаляем обработчик с функцией закрытия по нажатию на Esc и наличием класса открытия попапа
+  document.removeEventListener('keydown', closePopupByEsc);
+};
 
-//функция закрытия попапа по оверлею
-  overlayList.forEach((popup) => {
-    popup.addEventListener('click', function (evt) {
-      if (evt.target === popup) {
-        closePopup(popup);
-      }
-    });
+//установка закрытия попапа по оверлею
+overlayList.forEach((popup) => {
+  popup.addEventListener('click', function (evt) {
+    if (evt.target === popup) {
+      closePopup(popup);
+    }
   });
+});
 
 //отправка данных из полей формы редактирования в profile
 function submitEditProfileForm(evt) {
@@ -81,7 +85,7 @@ function submitEditProfileForm(evt) {
   profileName.textContent = nameInput.value;
   profileOccupation.textContent = jobInput.value;
   closePopup(popupEditProfile);
-};
+}
 
 //отрисовка карточек
 const createCard = (card) => {
@@ -97,7 +101,7 @@ const createCard = (card) => {
   //выбор картинки для попапа image
   const imageCard = templateNewCard.querySelector('.element__image');
   imageCard.addEventListener('click', function () {
-    toggleBigImage(cardHeading, cardImage);
+    openBigImage(cardHeading, cardImage);
   });
   //выбор кнопки для удаления карточки выбор элемента и обработчик по клику
   const deleteButton = templateNewCard.querySelector(
@@ -139,6 +143,8 @@ function submitAddCardForm(evt) {
   renderCard(card, cardsContainer);
   closePopup(popupAddCard);
   formAddCard.reset();
+  //Вызываем функции из модуля валидации, конфиг в модуле констант
+  disableButton(config, submitButtonAddForm);
 }
 
 //удаление карточки
@@ -172,7 +178,7 @@ buttonAddClose.addEventListener('click', function () {
 });
 
 //открытие попапа Image
-const toggleBigImage = function (cardHeading, cardImage) {
+const openBigImage = function (cardHeading, cardImage) {
   openPopup(popupBigImage);
   bigImageCard.src = cardImage.src;
   bigImageCard.alt = cardImage.alt;

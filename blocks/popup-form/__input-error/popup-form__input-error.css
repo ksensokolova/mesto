@@ -1,3 +1,4 @@
 .popup-form__input-error {
-  display: none;
+  display: block;
+  min-height: 30px;
 }

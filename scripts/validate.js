@@ -5,6 +5,10 @@ const setEventListeners = (config, formElement) => {
   const inputList = Array.from(
     formElement.querySelectorAll(config.inputSelector)
   );
+
+  formElement.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+  });
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
   // чтобы проверить состояние кнопки при загрузке страницы
@@ -40,18 +44,28 @@ const checkInputValidity = (config, formElement, inputElement) => {
   }
 };
 
+//функция выключения кнопки
+const disableButton = (config, buttonElement) => {
+  buttonElement.classList.add(config.buttonDisabledClass);
+  buttonElement.disabled = true;
+};
+
+//функция включения кнопки
+const enableButton = (config, buttonElement) => {
+  buttonElement.classList.remove(config.buttonDisabledClass);
+  buttonElement.disabled = false;
+};
+
 // Функция принимает массив полей ввода
 // и элемент кнопки, состояние которой нужно менять
 const toggleButtonState = (config, inputList, buttonElement) => {
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
     // сделай кнопку неактивной
-    buttonElement.classList.add(config.buttonDisabledClass);
-    buttonElement.disabled = true;
+    disableButton(config, buttonElement);
   } else {
     // иначе сделай кнопку активной
-    buttonElement.classList.remove(config.buttonDisabledClass);
-    buttonElement.disabled = false;
+    enableButton(config, buttonElement);
   }
 };
 
@@ -76,22 +90,10 @@ const enableValidation = (config) => {
   formList.forEach((formElement) => {
     // Для каждой формы вызовем функцию setEventListeners,
     // передав ей элемент формы
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-
     setEventListeners(config, formElement);
   });
 };
 
-config = {
-  formSelector: '.popup-form',
-  inputSelector: '.popup-form__text',
-  submitButtonSelector: '.popup-form__submit-btn',
-  errorClass: 'popup-form__text_type_error',
-  errorEnabledClass: 'popup-form__input-error_active',
-  buttonDisabledClass: 'popup-form__submit-btn_type_disabled',
-}
 // Вызовем функцию
 enableValidation(config);
 

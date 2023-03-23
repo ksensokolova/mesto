@@ -1,4 +1,7 @@
 .element__image {
+  display: block;
+  background-color: #000000;
   width: 282px;
   height: 282px;
+  cursor: pointer;
 }
