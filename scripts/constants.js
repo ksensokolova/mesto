@@ -1,5 +1,5 @@
 //массив карточек, которые добавляются в elements
-const initialCards = [
+ export const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
@@ -32,7 +32,7 @@ const initialCards = [
   },
 ];
 
-const config = {
+export const config = {
   formSelector: '.popup-form',
   inputSelector: '.popup-form__text',
   submitButtonSelector: '.popup-form__submit-btn',

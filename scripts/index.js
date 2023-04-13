@@ -1,3 +1,7 @@
+import Card from './Card.js';
+import { initialCards, config } from './constants.js';
+import FormValidator from './FormValidator.js';
+
 //profile
 const profileName = document.querySelector('.profile__name');
 const profileOccupation = document.querySelector('.profile__occupation');
@@ -39,10 +43,6 @@ const buttonAddClose = popupAddCard.querySelector(
 
 //formAddCard внутри попапа
 const formAddCard = popupAddCard.querySelector('.popup-form');
-//Находим кнопку сабмита
-const submitButtonAddForm = formAddCard.querySelector(
-  '.popup-form__submit-btn'
-);
 const placeInput = formAddCard.querySelector('.popup-form__text_type_name');
 const linkInput = formAddCard.querySelector(
   '.popup-form__text_type_additional'
@@ -87,71 +87,24 @@ function submitEditProfileForm(evt) {
   closePopup(popupEditProfile);
 }
 
-//отрисовка карточек
-const createCard = (card) => {
-  // Клонируем шаблон, наполняем его информацией из объекта
-  const templateNewCard = document
-    .querySelector('.elements__template')
-    .content.cloneNode(true);
-  const cardHeading = templateNewCard.querySelector('.element__heading');
-  const cardImage = templateNewCard.querySelector('.element__image');
-  cardHeading.textContent = card.name;
-  cardImage.setAttribute('src', card.link);
-  cardImage.setAttribute('alt', card.alt);
-  //выбор картинки для попапа image
-  const imageCard = templateNewCard.querySelector('.element__image');
-  imageCard.addEventListener('click', function () {
-    openBigImage(cardHeading, cardImage);
-  });
-  //выбор кнопки для удаления карточки выбор элемента и обработчик по клику
-  const deleteButton = templateNewCard.querySelector(
-    '.element__button_action_delete'
-  );
-  deleteButton.addEventListener('click', deleteCardButton);
-  //лайк карточке выбор элемента и обработчик по клику
-  templateNewCard
-    .querySelector('.element__like')
-    .addEventListener('click', function (evt) {
-      evt.target.classList.toggle('element__like_active');
-    });
-  // Возвращаем получившуюся карточку
-  return templateNewCard;
-};
-
-const renderCard = (card, cardsContainer) => {
-  // Создаем карточку на основе данных
-  const newElementCard = createCard(card);
-  // Помещаем ее в контейнер карточек
-  cardsContainer.prepend(newElementCard);
-};
-
-//запуск цикла для создания каждой карточки из массива
-initialCards.forEach((card) => {
-  renderCard(card, cardsContainer);
-});
-
 //добавление карточки из формы добавления
 function submitAddCardForm(evt) {
   evt.preventDefault();
   const formAddCard = evt.target;
   //запись данных из полей формы добавления в поля карточки
-  card = {
+  const card = {
     name: placeInput.value,
     link: linkInput.value,
   };
+
   // Создаем карточку на основе данных
-  renderCard(card, cardsContainer);
+  createCard(card, cardsContainer);
   closePopup(popupAddCard);
   formAddCard.reset();
-  //Вызываем функции из модуля валидации, конфиг в модуле констант
-  disableButton(config, submitButtonAddForm);
-}
 
-//удаление карточки
-function deleteCardButton(evt) {
-  const buttonRemove = evt.target;
-  const cardRemove = buttonRemove.closest('.element');
-  cardRemove.remove();
+  //Вызываем функции из модуля валидации, конфиг в модуле констант, чтобы отключить кнопку
+  const FormValidatorAddCard = new FormValidator(config, formAddCard);
+  FormValidatorAddCard.disableButton();
 }
 
 //открытие попапа редактирования
@@ -177,14 +130,6 @@ buttonAddClose.addEventListener('click', function () {
   closePopup(popupAddCard);
 });
 
-//открытие попапа Image
-const openBigImage = function (cardHeading, cardImage) {
-  openPopup(popupBigImage);
-  bigImageCard.src = cardImage.src;
-  bigImageCard.alt = cardImage.alt;
-  titleImageCard.textContent = cardHeading.textContent;
-};
-
 //закрытие попапа Image
 buttonImageClose.addEventListener('click', function () {
   closePopup(popupBigImage);
@@ -194,3 +139,29 @@ buttonImageClose.addEventListener('click', function () {
 formAddCard.addEventListener('submit', submitAddCardForm);
 //обработчик клика по кнопке Сохранить
 formEditProfile.addEventListener('submit', submitEditProfileForm);
+
+//открытие попапа Image
+function openBigImage(cardHeading, cardImage) {
+  openPopup(popupBigImage);
+  bigImageCard.src = cardImage;
+  bigImageCard.alt = cardImage;
+  titleImageCard.textContent = cardHeading;
+}
+
+function createCard(card) {
+  // Создадим экземпляр карточки
+  const newElementCard = new Card(card, '.elements__template', openBigImage);
+  // Создаём карточку и возвращаем наружу
+  const cardsContainer = newElementCard.generateCard();
+  // Добавляем в DOM
+  document.querySelector('.elements').prepend(cardsContainer);
+}
+
+initialCards.forEach(createCard);
+
+const card = new Card(initialCards, '.elements__template', openBigImage);
+
+const FormValidatorEditProfile = new FormValidator(config, formEditProfile);
+FormValidatorEditProfile.enableValidation();
+const FormValidatorAddCard = new FormValidator(config, formAddCard);
+FormValidatorAddCard.enableValidation();
