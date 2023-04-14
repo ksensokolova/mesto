@@ -22,9 +22,9 @@ export default class Card {
 
     // Добавим данные
     this._element.querySelector('.element__heading').textContent = this._name;
-    this._element.querySelector('.element__image').src = this._link;
-    this._element.querySelector('.element__image').alt = this._alt;
     this._imageCardZoom = this._element.querySelector('.element__image');
+    this._imageCardZoom.src = this._link;
+    this._imageCardZoom.alt = this._alt;
     this._likeButton = this._element.querySelector('.element__like');
     this._deleteButton = this._element.querySelector(
       '.element__button_action_delete'
@@ -38,7 +38,7 @@ export default class Card {
     this._element.remove();
   }
   //лайк
-  _toggleActiveLike() {
+  _toggleike() {
     this._likeButton.classList.toggle('element__like_active');
   }
 
@@ -48,7 +48,7 @@ export default class Card {
     });
 
     this._likeButton.addEventListener('click', () => {
-      this._toggleActiveLike();
+      this._toggleLike();
     });
 
     this._imageCardZoom.addEventListener('click', () => {

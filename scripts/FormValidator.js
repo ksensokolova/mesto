@@ -30,7 +30,7 @@ export default class FormValidator {
   disableButton() {
     this._buttonElement.classList.add(this._config.buttonDisabledClass);
     this._buttonElement.disabled = true;
-  };
+  }
 
   //функция включения кнопки
   _enableButton = () => {
@@ -52,9 +52,6 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-    this._formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
     this._toggleButtonState();
 
     // Обойдём все элементы полученной коллекции
@@ -83,17 +80,21 @@ export default class FormValidator {
 
   //функция валидации
   enableValidation() {
-    // Найдём все формы с указанным классом в DOM,
-    // сделаем из них массив методом Array.from
-    const formList = Array.from(
-      document.querySelectorAll(this._config.formSelector)
-    );
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    });
+    // Для формы вызовем функцию setEventListeners
+    this._setEventListeners();
+  }
 
-    // Переберём полученную коллекцию
-    formList.forEach((formElement) => {
-      // Для каждой формы вызовем функцию setEventListeners,
-      // передав ей элемент формы
-      this._setEventListeners(formElement);
+  resetValidation() {
+    //для управления кнопкой
+    this._toggleButtonState();
+    //проходим по полям
+    this._inputList.forEach((inputElement) => {
+      //очищаем ошибки
+      this._hideError(inputElement);
+      this._formElement.reset();
     });
   }
 
