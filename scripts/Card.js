@@ -38,7 +38,7 @@ export default class Card {
     this._element.remove();
   }
   //лайк
-  _togglelike() {
+  _toggleLike() {
     this._likeButton.classList.toggle('element__like_active');
   }
 
