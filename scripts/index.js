@@ -101,9 +101,11 @@ function submitAddCardForm(evt) {
 //открытие попапа редактирования
 profileEditButton.addEventListener('click', function () {
   openPopup(popupEditProfile);
+  formValidatorEditProfile.resetValidation();
   //запись данных из profile в поля формы редактирования
   nameInput.value = profileName.textContent;
   jobInput.value = profileOccupation.textContent;
+
 });
 
 //открытие попапа добавления
